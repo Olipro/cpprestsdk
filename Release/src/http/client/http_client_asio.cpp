@@ -119,6 +119,9 @@ public:
     void async_connect(const Iterator &begin, const Handler &handler)
     {
         std::lock_guard<std::mutex> lock(m_socket_lock);
+	if (!m_socket.is_open())
+	    m_socket.open(begin.endpoint().address().is_v4() ? tcp::v4() : tcp::v6());
+	m_socket.set_option(tcp::no_delay{true});
         m_socket.async_connect(begin, handler);
     }
 
