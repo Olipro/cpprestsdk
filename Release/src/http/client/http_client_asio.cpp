@@ -348,7 +348,7 @@ private:
         std::weak_ptr<asio_connection_pool> weak_pool = pool;
 
         self.m_prev_epoch = self.m_epoch;
-        pool->m_pool_epoch_timer.expires_from_now(boost::posix_time::seconds(30));
+        pool->m_pool_epoch_timer.expires_from_now(boost::posix_time::seconds(9);
         pool->m_pool_epoch_timer.async_wait([weak_pool](const boost::system::error_code& ec)
         {
             if (ec)
